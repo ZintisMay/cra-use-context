@@ -1,8 +1,12 @@
 import axios from "axios";
 
-export const getUsers = async (numberOfUsersToGet = 5) => {
+export const getUsers = async ({ numberOfUsersToGet, country } = {}) => {
+  const URL = `https://randomuser.me/api/?results=${
+    numberOfUsersToGet || 5
+  }&nat=${country}`;
+  console.log(URL);
   return axios
-    .get(`https://randomuser.me/api/?results=${numberOfUsersToGet}`)
+    .get(URL)
     .then((res) => {
       console.log(res);
       return res?.data?.results;

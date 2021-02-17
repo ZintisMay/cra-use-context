@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Users } from "./Users";
 import { Friends } from "./Friends";
 import { Home } from "./Home";
+import { Country } from "./Country";
 //@#@#@# step 2 import
 import Context from "./Context";
 
@@ -11,6 +12,26 @@ const INITIAL_STATE = {
   name: "zintis",
   friends: [],
 };
+
+const COUNTRIES = [
+  "AU",
+  "BR",
+  "CA",
+  "CH",
+  "DE",
+  "DK",
+  "ES",
+  "FI",
+  "FR",
+  "GB",
+  "IE",
+  "IR",
+  "NO",
+  "NL",
+  "NZ",
+  "TR",
+  "US",
+];
 
 export default function App() {
   //@#@#@# step 4 have the app hold the state
@@ -34,10 +55,20 @@ export default function App() {
                 <Link to="/users">Users</Link>
               </li>
             </ul>
+            {COUNTRIES.map((country, i) => (
+              <Link
+                key={i}
+                style={{ margin: "0 2px" }}
+                to={`/country/${country}`}
+              >
+                {country}
+              </Link>
+            ))}
           </nav>
           <Switch>
             <Route path="/about" component={Friends} />
             <Route path="/users" component={Users} />
+            <Route path="/country/:country" component={Country} />
             <Route path="/" component={Home} />
           </Switch>
         </div>
